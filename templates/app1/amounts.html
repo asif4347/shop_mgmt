@@ -1,0 +1,47 @@
+{% extends 'app1/base1.html' %}
+
+{% block content %}
+
+    <br>
+  <div class="button-group">
+        <a href="#" class="btn btn-primary btn-md" role="button">Amounts</a>
+        <a href="{% url 'add_amount' order.pk%}" class="btn btn-warning btn-sm" role="button">+</a>
+  </div>
+    <br>
+    <h4><b>Order : </b> {{ order.pk }}</h4>
+    <h6><b>Selesman</b>: {{ order.salesman }}</h6>
+    <h6><b>Total Amount</b>: {{ order.total_amount }}</h6>
+    <h6><b>Paid Amount</b>: {{ order.amount_paid }}</h6>
+    <h6><b>Status</b>: {{ order.status }}</h6>
+
+
+      <table class="table table-hover">
+        <thead>
+            <tr>
+              {% if amounts %}
+                <th>id</th>
+                <th>Amount</th>
+                <th>Date</th>
+              {% endif %}
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for amount in amounts %}
+                <tr>
+                <td>{{ amount.pk }}</td>
+                <td>{{ amount.amount}}</td>
+                <td>{{amount.timestamp}}</td>
+                <td>
+                    <a href="{% url 'edit_amount' amount.pk%}" class="btn btn-warning btn-sm" role="button">Edit</a>
+                    <a href="{% url 'delete_amount' amount.pk%}" class="btn btn-danger btn-sm" role="button">Delete</a>
+                </td>
+
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}

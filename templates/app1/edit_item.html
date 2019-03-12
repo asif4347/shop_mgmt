@@ -1,0 +1,37 @@
+{% extends 'app1/base1.html' %}
+
+{% block content %}
+    <br>
+  <div class="container">
+        <h4 style="color: #0f6674"> Edit {{ header }}</h4>
+      <br>
+    <form method="POST">
+      {% csrf_token %}
+
+      {% for field in form %}
+
+      <div class="form-group row">
+        <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+        <div class="col-4">
+            {{ field }}
+        </div>
+      </div>
+
+      {% endfor %}
+
+      <div class="form-group row" >
+        <div class=" col-sm-6">
+        {% if header == "Shop" %}
+          <button type="submit" class="btn btn-primary btn-md">Edit Shop</button>
+        {% elif header == 'Salesman' %}
+            <button type="submit" class="btn btn-primary btn-md">Edit Salesman</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary btn-md">Edit Order</button>
+        {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'app1/base1.html' %}
+
+{% block content %}
+    <br>
+  <div class="container">
+        <h4 style="color: #0f6674"> Add {{ header }}</h4>
+      <br>
+    <form method="POST">
+      {% csrf_token %}
+
+      {% for field in form %}
+
+      <div class="form-group row">
+        <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>
+        <div class="col-4">
+            {{ field }}
+        </div>
+      </div>
+
+      {% endfor %}
+
+      <div class="form-group row" >
+        <div class=" col-sm-6">
+
+        {% if header == "Shop" %}
+          <button type="submit" class="btn btn-primary btn-md">Add Shop</button>
+        {% elif header == 'Salesman' %}
+            <button type="submit" class="btn btn-primary btn-md">Add Salesman</button>
+        {% elif header == 'Order'%}
+            <button type="submit" class="btn btn-primary btn-md">Add Order</button>
+        {% else %}
+            <button type="submit" class="btn btn-primary btn-md">Add Amount</button>
+        {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% endif %}
+{% endblock %}

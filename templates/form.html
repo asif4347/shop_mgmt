@@ -1,0 +1,70 @@
+{#{% extends 'app1/base1.html' %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container">#}
+{#<h1>Home</h1>#}
+{#    <form action="">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Submit</button>#}
+{#    </form>#}
+{#</div>#}
+{##}
+{##}
+{#    {% extends 'app1/base1.html' %}#}
+{##}
+{#{% block content %}#}
+{#    <br>#}
+{#  <div class="container">#}
+{#        <h4> Add {{ header }}</h4>#}
+{##}
+{#    <form method="POST">#}
+{#      {% csrf_token %}#}
+{##}
+{##}
+{##}
+{#      {% for field in form %}#}
+{##}
+{#      <div class="form-group row">#}
+{##}
+{#          {% if field.name == 'address' %}#}
+{#             <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>#}
+{#              <div class="col-10">#}
+{#              <textarea rows="2" cols="20">#}
+{#              </textarea>#}
+{#              </div>#}
+{#          {% elif field.name == 'shops' %}#}
+{#            <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>#}
+{#           <div class="col-4">#}
+{#            <select class="col-7 form-control">#}
+{#            {% for shop in  shops %}#}
+{#            <option>{{ shop.name }}</option>#}
+{#            {% endfor %}#}
+{#            </select>#}
+{#           </div>#}
+{#          {% else %}#}
+{#                <label for="id_{{ field.name }}" class="col-2 col-form-label">{{ field.label }}</label>#}
+{#            <div class="col-4">#}
+{#              {{ field }}#}
+{#            </div>#}
+{##}
+{#          {% endif %}#}
+{#    </div>#}
+{#      {% endfor %}#}
+{##}
+{#      <div class="form-group row" >#}
+{#        <div class=" col-sm-6">#}
+{##}
+{#          <button type="submit" class="btn btn-primary">Add</button>#}
+{##}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
