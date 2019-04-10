@@ -19,7 +19,7 @@ class AddSalesmanForm(forms.ModelForm):
 class AddOrderForm(forms.ModelForm):
     salesman = forms.ModelChoiceField(queryset=Salesman.objects.all())
     # status = forms.ChoiceField(widget=forms.Select(attrs={'class':'form-control'}))
-    date = forms.DateField(widget=forms.SelectDateWidget(attrs={'class': 'datepicker col-xs-6'}))
+    date = forms.DateField(widget=forms.SelectDateWidget(attrs={'class': 'datepicker col-xs-6','type':'date'}))
 
     class Meta:
         model = Orders

@@ -102,7 +102,7 @@
 
                 <td>
                     <a href="{% url 'edit_order' order.pk%}" class="btn btn-warning btn-sm" role="button">Edit</a>
-                    <a href="{% url 'delete_order' order.pk%}" class="btn btn-danger btn-sm" role="button">Delete</a>
+                    <a onclick="delete_data('{% url 'delete_order' order.pk %}')" href="javascript:void(0)" class="btn btn-danger btn-sm" role="button">Delete</a>
                     <a href="{% url 'order_amounts' order.pk%}" class="btn btn-success btn-sm" role="button">Amounts</a>
                 </td>
 
@@ -117,7 +117,7 @@
                 <td>
                     <a href="{% url 'edit_salesman' saleman.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
 
-                    <a href="{% url 'delete_salesman' saleman.pk%}" class="btn btn-danger btn-sm" role="button">Delete</a>
+                    <a onclick="delete_data('{% url 'delete_salesman' saleman.pk%}')" href="javascript:void(0)"  class="btn btn-danger btn-sm" role="button">Delete</a>
 
                     <a href="{% url 'salesman_order' saleman.pk%}" class="btn btn-secondary btn-sm" role="button">Orders</a>
                 </td>
@@ -133,14 +133,12 @@
 
                 <td>
                     <a href="{% url 'edit_shop' shop.pk %}" class="btn btn-warning btn-sm" role="button">Edit</a>
-                    <a href="{% url 'delete_shop' shop.pk%}" class="btn btn-danger btn-sm" role="button">Delete</a>
+                    <a onclick="delete_data('{% url 'delete_shop' shop.pk%}')" href="javascript:void(0)" class="btn btn-danger btn-sm" role="button">Delete</a>
                 </td>
 
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <script>
 
-    </script>
 {% endblock %}
