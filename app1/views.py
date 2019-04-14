@@ -8,10 +8,11 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login , authenticate
 from .forms import *
+from django.http import HttpResponse
 from django.forms import formset_factory
 from django.forms import ValidationError as FormValidationError
 # https://stackoverflow.com/questions/42613200/python-django-pass-argument-to-form-clean-method
-
+import xlwt
 
 def loginView(request):
     if request.method == "GET":
@@ -329,3 +330,41 @@ class ProfileDelete(DeleteView):
     model = Orders
     success_url = reverse_lazy('profile-list')
 
+
+
+# export
+
+def export_orders_xls(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="orders.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Orders')
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['id', 'Salesman', 'Shop', 'Status', 'Total Amount', 'Amount Paid', 'Date']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    rows = Orders.objects.all().values_list('id', 'salesman__name', 'shop__name','status', 'total_amount', 'amount_paid','date' )
+    print(rows)
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            if col_num == 6:
+                date =str(row[col_num])
+                ws.write(row_num, col_num, date, font_style)
+            else:
+                ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+    return response

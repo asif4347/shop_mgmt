@@ -13,6 +13,10 @@
 
             <a href="{% url 'display_shops' %}" class="btn btn-primary btn-md" role="button">Shop</a>
             <a href="{% url 'add_shop' %}" class="btn btn-warning btn-sm" role="button">+</a>
+
+{#            <a href="{% url 'export_users_xls' %}">Export all users</a>#}
+            <a href="{% url 'export-orders' %}" class="btn btn-primary btn-md" role="button">Export all orders</a>
+
         </div>
 
     </div>
@@ -64,7 +68,7 @@
         <h4>Orders</h4>
     {% endif %}
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="dtorder">
         <thead>
             <tr>
               {% if orders %}
@@ -75,14 +79,17 @@
                 <th>Total Amount</th>
                 <th>Amount Paid</th>
                 <th>Date</th>
+                  <th></th>
               {% elif salesmen %}
                  <th>id</th>
                  <th>Name</th>
                  <th>Address</th>
+                  <th></th>
               {% elif shops %}
                  <th>id</th>
                  <th>Name</th>
                  <th>Address</th>
+                  <th></th>
               {% endif %}
             </tr>
 
@@ -140,5 +147,13 @@
             {% endfor %}
         </tbody>
     </table>
-
+</div>
 {% endblock %}
+
+
+<script>
+    $(document).ready(function() {
+        var table = $('#dtorder').DataTable();
+        alert(table.id)
+    });
+</script>

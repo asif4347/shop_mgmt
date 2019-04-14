@@ -33,6 +33,7 @@ urlpatterns= [
 
 
     path('index/', indexView, name='index'),
-    path('filter-order/', filterView, name='filter-order')
+    path('filter-order/', filterView, name='filter-order'),
     # path('add_order', , name='index')
+    path('export/orders',export_orders_xls , name="export-orders")
 ]
